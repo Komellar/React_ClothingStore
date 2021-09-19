@@ -1,0 +1,54 @@
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 5%;
+  max-height: 25rem;
+  overflow: auto;
+}
+
+.total {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.total h3 {
+  font-size: 1.5rem;
+}
+
+.total p {
+  font-size: 1.6rem;
+}
+
+.modal-actions {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-actions button {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.4rem 1.2rem;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+  border: 1px solid rgb(156, 80, 9);
+  border-radius: 16px;
+  background-color: rgb(156, 80, 9);
+}
+
+.modal-actions .button--close {
+  background-color: #fff;
+  color: rgb(156, 80, 9);
+}
+
+.modal-actions button:active,
+.modal-actions button:hover,
+.modal-actions .button--close:active,
+.modal-actions .button--close:hover {
+  background-color: rgb(107, 55, 6);
+  color: white;
+}

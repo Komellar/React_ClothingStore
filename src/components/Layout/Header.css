@@ -1,0 +1,35 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+  background-color: rgb(156, 80, 9);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.image {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.image image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  padding-left: 2rem;
+}
+
+.header-button {
+  margin-right: 10%;
+}

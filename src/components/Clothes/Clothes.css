@@ -1,0 +1,14 @@
+.db-message {
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.empty {
+  font-weight: bold;
+}
+
+.error {
+  color: #e72d2d;
+  font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.summary-section {
+  width: 85%;
+  max-width: 45rem;
+  margin: auto;
+  margin-top: -10rem;
+  text-align: center;
+  position: relative;
+  background-color: rgba(218, 194, 178, 0.95);
+  /* background-color: rgba(220, 220, 220, 0.9); */
+  color: #222;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+
+.summary-section h2 {
+  font-size: 1.8rem;
+}
+
+.summary-section p {
+  font-weight: 500;
+}
