@@ -1,33 +1,23 @@
-import React, { useContext } from 'react';
-import CartContext from '../store/cart-context';
-import Modal from '../UI/Modal';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
+import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
-
-  const totalAmount = cartCtx.totalAmount.toFixed(2);
-
-  const cartItemAddHandler = (item) => {
-    cartCtx.addItem({ ...item, amount: 1 });
-  };
-
-  const cartItemRemoveHandler = (id) => {
-    cartCtx.removeItem(id);
-  };
+  const items = useSelector((state) => state.cart.items);
+  const totalAmount = useSelector((state) => state.cart.totalCartPrice);
 
   const cartItems = (
     <ul className={classes.items}>
-      {cartCtx.items.map((item) => (
+      {items.map((item) => (
         <CartItem
           key={item.id}
+          id={item.id}
           name={item.name}
           price={item.price}
-          amount={item.amount}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          onAdd={cartItemAddHandler.bind(null, item)}
+          quantity={item.quantity}
         />
       ))}
     </ul>
@@ -48,7 +38,7 @@ const Cart = (props) => {
         {cartItems}
         <div className={classes.total}>
           <h3>Total Amount</h3>
-          <p>${totalAmount}</p>
+          <p>${totalAmount.toFixed(2)}</p>
         </div>
         {modalActions}
       </React.Fragment>

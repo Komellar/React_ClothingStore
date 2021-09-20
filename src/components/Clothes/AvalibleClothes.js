@@ -13,7 +13,6 @@ const AvalibleClothes = (props) => {
             name={cloth.title}
             desc={cloth.description}
             price={cloth.price}
-            category={cloth.category}
             image={cloth.image}
           />
         );

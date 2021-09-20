@@ -28,7 +28,6 @@ const Clothes = () => {
           title: clothData.title,
           description: clothData.description,
           price: clothData.price,
-          category: clothData.category,
           image: clothData.image,
         };
       });

@@ -1,21 +1,22 @@
-import React, { useContext } from 'react';
-import CartContext from '../../store/cart-context';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
+import { cartActions } from '../../../store/cart-slice';
 import './ClothItem.css';
 import ClothItemForm from './ClothItemForm';
 
 const ClothItem = (props) => {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
 
-  const addItemToCartHandler = (amount) => {
-    cartCtx.addItem({
-      id: props.id,
-      name: props.name,
-      price: props.price,
-      amount: amount,
-      image: props.image,
-      category: props.category,
-    });
+  const addItemToCartHandler = (quantity) => {
+    dispatch(
+      cartActions.addItemToCart({
+        id: props.id,
+        name: props.name,
+        price: props.price,
+        quantity: quantity,
+      })
+    );
   };
 
   return (
