@@ -1,0 +1,15 @@
+.btn-add {
+  display: block;
+  margin: 0 auto;
+  margin-top: 3rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgb(199, 119, 15);
+  background-color: rgb(199, 119, 15);
+  border-radius: 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}

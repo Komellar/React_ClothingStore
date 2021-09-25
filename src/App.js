@@ -1,8 +1,13 @@
 import React, { Fragment, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import './components/FontawesomeIcons';
+
 import './App.css';
 import Cart from './components/Cart/Cart';
-import Clothes from './components/Clothes/Clothes';
+import Products from './pages/Products';
+import NotFound from './pages/NotFound';
 import Header from './components/Layout/Header';
+import ProductDetail from './pages/ProductDetail';
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -20,7 +25,20 @@ const App = () => {
       {cartIsShown && <Cart onClose={closeCartHandler} />}
       <Header onOpen={openCartHandler} />
       <main>
-        <Clothes />
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/products" />
+          </Route>
+          <Route path="/products" exact>
+            <Products />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductDetail />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
       </main>
     </Fragment>
   );

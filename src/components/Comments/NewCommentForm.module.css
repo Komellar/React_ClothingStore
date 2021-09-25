@@ -1,0 +1,102 @@
+.form {
+  background-color: rgb(197, 195, 195);
+  border: 1px solid black;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+}
+
+.inputs label {
+  color: #222;
+  margin-top: 0.6rem;
+}
+
+.inputs input,
+.inputs textarea {
+  font-size: 1.1rem;
+  padding: 0.4rem 0.2rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.inputs input:focus,
+.inputs textarea:focus {
+  outline-color: rgb(231, 104, 0);
+  background-color: rgb(233, 218, 201);
+}
+
+.stars {
+  display: block;
+}
+
+.stars p {
+  font-size: 1.3rem;
+  color: #222;
+  margin: 0;
+}
+
+.star {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #666;
+}
+
+.star-active {
+  color: rgb(226, 177, 13);
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-error {
+  color: #ff0000;
+  outline-color: #ff0000;
+  background-color: rgb(224, 146, 146);
+}
+
+.error {
+  color: #f02020;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0.3rem;
+}
+
+.btn {
+  display: block;
+  width: 60%;
+  max-width: 15rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgb(199, 119, 15);
+  background-color: rgb(199, 119, 15);
+  border-radius: 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:active,
+.btn:hover {
+  background-color: rgb(231, 104, 0);
+  border-color: rgb(231, 104, 0);
+}
+
+.disabled,
+.disabled:hover,
+.disabled:active {
+  cursor: not-allowed;
+  background-color: #333;
+  border-color: #333;
+  color: #ccc;
+}

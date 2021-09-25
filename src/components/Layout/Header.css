@@ -26,8 +26,19 @@
   object-fit: cover;
 }
 
-h1 {
+.logo,
+.logo:hover,
+.logo:active {
   padding-left: 2rem;
+  font-size: 2.1rem;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.logo:hover {
+  cursor: pointer;
+  color: rgb(240, 231, 223);
 }
 
 .header-button {

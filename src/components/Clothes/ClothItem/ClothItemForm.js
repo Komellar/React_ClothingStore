@@ -1,4 +1,6 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+
 import './ClothItemForm.css';
 
 const ClothItemForm = (props) => {
@@ -12,6 +14,10 @@ const ClothItemForm = (props) => {
 
     props.onAdd(enteredAmountNumber);
   };
+
+  // const showDetailsHandler = () => {
+  //   console.log('DETAILS');
+  // };
 
   return (
     <form className="form" onSubmit={submitHandler}>
@@ -28,9 +34,17 @@ const ClothItemForm = (props) => {
         step="1"
         defaultValue="1"
       />
-      <button className="amount-button" type="submit">
-        + Add
-      </button>
+      <div className="item-buttons">
+        <button className="add-button" type="submit">
+          + Add
+        </button>
+        {/* <button onClick={showDetailsHandler} className="item-details">
+          Show Details
+        </button> */}
+        <Link to={`/products/${props.id}`} className="item-details">
+          Show Details
+        </Link>
+      </div>
     </form>
   );
 };

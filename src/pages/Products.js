@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import AvalibleClothes from './AvalibleClothes';
-import ClothesSummary from './ClothesSummary';
+import AvalibleClothes from '../components/Clothes/AvalibleClothes';
+import ClothesSummary from '../components/Clothes/ClothesSummary';
 
-import './Clothes.css';
+import './ClothesPage.css';
+import tiesImage from '../assets/ties.jpg';
 
-const Clothes = () => {
+const Products = () => {
   const [clothes, setClothes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -56,10 +57,13 @@ const Clothes = () => {
 
   return (
     <React.Fragment>
+      <div className="image">
+        <img src={tiesImage} alt="Ties" />
+      </div>
       <ClothesSummary />
       {content}
     </React.Fragment>
   );
 };
 
-export default Clothes;
+export default Products;
