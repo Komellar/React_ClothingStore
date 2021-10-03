@@ -2,8 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import AvalibleClothes from '../components/Clothes/AvalibleClothes';
 import ClothesSummary from '../components/Clothes/ClothesSummary';
 
-import './ClothesPage.css';
+import './Products.css';
 import tiesImage from '../assets/ties.jpg';
+import InformationBanner from '../components/Banners/InformationBanner';
+import NewCollectionBanner from '../components/Banners/NewCollectionBanner';
+import NewsletterBanner from '../components/Banners/NewsletterBanner';
 
 const Products = () => {
   const [clothes, setClothes] = useState([]);
@@ -57,11 +60,14 @@ const Products = () => {
 
   return (
     <React.Fragment>
-      <div className="image">
+      <div className="ties-image">
         <img src={tiesImage} alt="Ties" />
       </div>
       <ClothesSummary />
+      <InformationBanner />
+      <NewCollectionBanner />
       {content}
+      <NewsletterBanner />
     </React.Fragment>
   );
 };

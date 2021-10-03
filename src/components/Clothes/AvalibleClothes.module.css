@@ -1,0 +1,14 @@
+.clothes-list {
+  margin: 0;
+  margin-top: 3rem;
+  padding: 0;
+  width: 100%;
+}
+
+@media (min-width: 650px) {
+  .clothes-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+}

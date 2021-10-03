@@ -1,10 +1,10 @@
 import ClothItem from './ClothItem/ClothItem';
 
-import './AvalibleClothes.css';
+import classes from './AvalibleClothes.module.css';
 
 const AvalibleClothes = (props) => {
   return (
-    <ul className="meals-list">
+    <section className={classes['clothes-list']}>
       {props.clothes.map((cloth) => {
         return (
           <ClothItem
@@ -17,7 +17,7 @@ const AvalibleClothes = (props) => {
           />
         );
       })}
-    </ul>
+    </section>
   );
 };
 

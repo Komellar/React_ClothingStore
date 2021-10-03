@@ -1,0 +1,39 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.list-item {
+  border-bottom: 1px solid black;
+  padding: 0.5rem;
+}
+
+.comment {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.comment-span {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.comment-span p {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.comment-span div {
+  margin-top: 0.5rem;
+}
+
+.star {
+  font-size: 1rem;
+  color: #666;
+}
+
+.star-active {
+  color: rgb(226, 177, 13);
+}

@@ -1,97 +1,67 @@
-import { Fragment, useRef, useState, useReducer, useEffect } from 'react';
+import { Fragment, useRef, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import useInput from '../../hooks/use-input';
+import useHttp from '../../hooks/use-http';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Rating from 'react-rating';
-
 import classes from './NewCommentForm.module.css';
+import { addComment } from '../../lib/api';
 
-const validSymbols = /^(?!\s)[A-Za-z_][A-Za-z0-9_():^.?,!\s]+$/;
-const hasValue = (value) => value.trim() !== '';
-const hasValidSymbols = (value) => validSymbols.test(value);
-
-const nameReducer = (state, action) => {
-  if (action.type === 'INPUT') {
-    return {
-      value: action.val,
-      isTouched: true,
-      isValid: state.isValid,
-      error: null,
-    };
-  }
-  if (action.type === 'BLUR') {
-    const validateName = () => {
-      if (!hasValue(state.value)) {
-        return "Username can't be empty!";
-      } else if (!hasValidSymbols(state.value)) {
-        return 'Use only valid symbols!';
-      } else {
-        return null;
-      }
-    };
-    return {
-      value: state.value,
-      isTouched: true,
-      isValid:
-        !hasValue(state.value) || !hasValidSymbols(state.value) ? false : true,
-      error: validateName(),
-    };
-  }
-};
-
-const commentReducer = (state, action) => {
-  if (action.type === 'INPUT') {
-    return {
-      value: action.val,
-      isTouched: true,
-      isValid: state.isValid,
-      error: null,
-    };
-  }
-  if (action.type === 'BLUR') {
-    const validateComment = () => {
-      if (!hasValue(state.value)) {
-        return "Comment can't be empty!";
-      } else if (!hasValidSymbols(state.value)) {
-        return 'Use only valid symbols!';
-      } else {
-        return null;
-      }
-    };
-    return {
-      value: state.value,
-      isTouched: true,
-      isValid:
-        !hasValue(state.value) || !hasValidSymbols(state.value) ? false : true,
-      error: validateComment(),
-    };
-  }
-};
-
-const NewCommentForm = () => {
+const NewCommentForm = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
   const nameInputRef = useRef();
   const commentInputRef = useRef();
 
-  const [nameState, dispatchName] = useReducer(nameReducer, {
-    value: '',
-    isTouched: false,
-    isValid: true,
-    error: null,
-  });
+  const params = useParams();
+  const { productId } = params;
 
-  const [commentState, dispatchComment] = useReducer(commentReducer, {
-    value: '',
-    isTouched: false,
-    isValid: true,
-    error: null,
-  });
+  const { sendRequest, error, isLoading } = useHttp(addComment);
+
+  const {
+    inputValue: nameValue,
+    isTouched: nameIsTouched,
+    isValid: nameIsValid,
+    error: nameError,
+    changeValue: changeName,
+    checkValidity: checkName,
+  } = useInput();
+
+  const {
+    inputValue: commentValue,
+    isTouched: commentIsTouched,
+    isValid: commentIsValid,
+    error: commentError,
+    changeValue: changeComment,
+    checkValidity: checkComment,
+  } = useInput();
+
+  const addCommentHandler = async (event) => {
+    event.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
+
+    await sendRequest({
+      commentData: {
+        username: nameValue,
+        comment: commentValue,
+        rating: ratingStars,
+      },
+      productId: productId,
+    });
+
+    props.onAddComment(productId);
+  };
 
   useEffect(() => {
     if (
-      !nameState.isValid ||
-      !nameState.isTouched ||
-      !commentState.isValid ||
-      !commentState.isTouched ||
+      !nameIsValid ||
+      !nameIsTouched ||
+      !commentIsValid ||
+      !commentIsTouched ||
       ratingStars === 0
     ) {
       setFormIsValid(false);
@@ -99,62 +69,29 @@ const NewCommentForm = () => {
       setFormIsValid(true);
     }
   }, [
-    nameState.isValid,
-    nameState.isTouched,
-    commentState.isValid,
-    commentState.isTouched,
+    nameIsValid,
+    nameIsTouched,
+    commentIsValid,
+    commentIsTouched,
     ratingStars,
   ]);
 
-  const addCommentHandler = (event) => {
-    event.preventDefault();
-    if (!formIsValid) {
-      if (nameState.error) {
-        console.log(nameState.error);
-      }
-      if (commentState.error) {
-        console.log(commentState.error);
-      }
-      return;
-    }
-    console.log('FORM IS VALID');
-    console.log(nameState.value);
-    console.log(commentState.value);
-    console.log(ratingStars);
-  };
+  const nameClasses = nameError
+    ? `${classes['form-control']} ${classes.invalid}`
+    : classes['form-control'];
 
-  const starsChangeHandler = (amount) => {
-    setRatingStars(amount);
-    console.log(ratingStars);
-  };
-
-  const nameChangeHandler = () => {
-    dispatchName({ type: 'INPUT', val: nameInputRef.current.value });
-  };
-
-  const commentChangeHandler = () => {
-    dispatchComment({ type: 'INPUT', val: commentInputRef.current.value });
-  };
-
-  const nameBlurHandler = () => {
-    dispatchName({ type: 'BLUR' });
-  };
-
-  const commentBlurHandler = () => {
-    dispatchComment({ type: 'BLUR' });
-  };
+  const commentClasses = commentError
+    ? `${classes['form-control']} ${classes.invalid}`
+    : classes['form-control'];
 
   const buttonClasses = !formIsValid
     ? `${classes.btn} ${classes.disabled}`
     : classes.btn;
 
-  // const nameClasses = !nameState.isValid
-  //   ? `${classes['form-control']} ${classes['form-error']}`
-  //   : classes['form-control'];
-
   return (
     <Fragment>
       <form onSubmit={addCommentHandler} className={classes.form}>
+        {error && <h3 className={classes['error-sending']}>{error}</h3>}
         <div className={classes.stars}>
           <p>Star Rating</p>
           <Rating
@@ -164,41 +101,41 @@ const NewCommentForm = () => {
               <FontAwesomeIcon icon="star" className={classes['star-active']} />
             }
             initialRating={ratingStars}
-            onClick={starsChangeHandler}
+            onClick={(quantity) => setRatingStars(quantity)}
           />
         </div>
         <div className={classes.inputs}>
-          <div className={classes['form-control']}>
+          <div className={nameClasses}>
             <label htmlFor="name">Username</label>
             <input
               ref={nameInputRef}
               type="text"
               name="name"
-              onChange={nameChangeHandler}
-              onBlur={nameBlurHandler}
+              onChange={() => changeName(nameInputRef.current.value)}
+              onBlur={checkName}
             />
-            {!nameState.isValid && (
-              <p className={classes.error}>{nameState.error}</p>
-            )}
+            {!nameIsValid && <p className={classes.error}>{nameError}</p>}
           </div>
-          <div className={classes['form-control']}>
+          <div className={commentClasses}>
             <label htmlFor="comment">Your Comment</label>
             <textarea
               ref={commentInputRef}
               name="comment"
               rows="5"
-              onChange={commentChangeHandler}
-              onBlur={commentBlurHandler}
+              onChange={() => changeComment(commentInputRef.current.value)}
+              onBlur={checkComment}
             ></textarea>
-            {!commentState.isValid && (
-              <p className={classes.error}>{commentState.error}</p>
-            )}
+            {!commentIsValid && <p className={classes.error}>{commentError}</p>}
           </div>
         </div>
-        <button className={buttonClasses}>
-          {/* <button disabled={!formIsValid} type="submit"> */}
-          Post Comment
-        </button>
+        {!error && isLoading && (
+          <button className={`${classes.btn} ${classes['btn-loading']}`}>
+            Processing...
+          </button>
+        )}
+        {!error && !isLoading && (
+          <button className={buttonClasses}>Post Comment</button>
+        )}
       </form>
     </Fragment>
   );

@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import ClothDetails from '../components/Clothes/ClothItem/ClothDetails';
 
@@ -23,7 +23,7 @@ const ProductDetail = () => {
       }
 
       const data = await response.json();
-      //id, title, price, description, image, rating(rate, count)
+      //data returns => id, title, price, description, image, rating(rate, count)
 
       setClothDetails(data);
     } catch (error) {
@@ -62,7 +62,7 @@ const ProductDetail = () => {
     );
   }
 
-  return <div>{content}</div>;
+  return <Fragment>{content}</Fragment>;
 };
 
 export default ProductDetail;

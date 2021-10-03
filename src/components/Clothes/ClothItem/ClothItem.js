@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { cartActions } from '../../../store/cart-slice';
-import './ClothItem.css';
 import ClothItemForm from './ClothItemForm';
+import classes from './ClothItem.module.css';
 
 const ClothItem = (props) => {
   const dispatch = useDispatch();
@@ -20,16 +21,15 @@ const ClothItem = (props) => {
   };
 
   return (
-    <li className="item">
-      <div>
-        <h3 className="item-name">{props.name}</h3>
-        <p className="item-price">${props.price}</p>
-        <ClothItemForm onAdd={addItemToCartHandler} id={props.id} />
+    // <li className={classes.item}>
+    <Link to={`/products/${props.id}`} className={classes.item}>
+      <div className={classes['image-section']}>
+        <img src={props.image} alt="Item" className={classes.image} />
       </div>
-      <div className="item-image-section">
-        <img src={props.image} alt="Item" className="item-image" />
-      </div>
-    </li>
+      <h3 className={classes.name}>{props.name}</h3>
+      <p className={classes.price}>${props.price}</p>
+    </Link>
+    // </li>
   );
 };
 

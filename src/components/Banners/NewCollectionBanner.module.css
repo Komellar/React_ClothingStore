@@ -1,0 +1,52 @@
+.banner {
+  width: 100%;
+  margin: 0;
+  margin: 0 auto;
+  margin-top: 3rem;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.image {
+  background-image: url(../../assets/collection.jpg);
+  height: 30rem;
+  object-fit: contain;
+  background-attachment: fixed;
+  background-position: 70% 0%;
+}
+
+.shadow {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+}
+
+.shadow h5 {
+  font-size: 3.5rem;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.shadow button {
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 3px solid white;
+  border-radius: 5px;
+}
+
+.shadow button:active,
+.shadow button:hover {
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+}

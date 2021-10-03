@@ -56,10 +56,10 @@
   flex-direction: column;
 }
 
-.form-error {
-  color: #ff0000;
-  outline-color: #ff0000;
-  background-color: rgb(224, 146, 146);
+.invalid input,
+.invalid textarea {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
 }
 
 .error {
@@ -67,6 +67,14 @@
   font-style: italic;
   font-weight: 700;
   font-size: 1.1rem;
+  margin-top: 0.3rem;
+}
+
+.error-sending {
+  color: #f02020;
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.8rem;
   margin-top: 0.3rem;
 }
 
@@ -99,4 +107,8 @@
   background-color: #333;
   border-color: #333;
   color: #ccc;
+}
+
+.btn-loading {
+  cursor: not-allowed;
 }

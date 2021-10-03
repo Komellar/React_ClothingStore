@@ -15,10 +15,6 @@ const ClothItemForm = (props) => {
     props.onAdd(enteredAmountNumber);
   };
 
-  // const showDetailsHandler = () => {
-  //   console.log('DETAILS');
-  // };
-
   return (
     <form className="form" onSubmit={submitHandler}>
       <label className="amount-label" htmlFor="amount">
@@ -38,12 +34,9 @@ const ClothItemForm = (props) => {
         <button className="add-button" type="submit">
           + Add
         </button>
-        {/* <button onClick={showDetailsHandler} className="item-details">
+        {/* <Link to={`/products/${props.id}`} className="item-details">
           Show Details
-        </button> */}
-        <Link to={`/products/${props.id}`} className="item-details">
-          Show Details
-        </Link>
+        </Link> */}
       </div>
     </form>
   );

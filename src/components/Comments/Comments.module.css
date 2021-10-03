@@ -1,7 +1,7 @@
 .btn-add {
   display: block;
   margin: 0 auto;
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
   text-decoration: none;
   padding: 0.6rem 1.5rem;
@@ -12,4 +12,11 @@
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 2rem;
 }
