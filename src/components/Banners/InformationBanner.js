@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InformationBanner = (props) => {
   return (
-    <section className={classes.banner}>
+    <section className={classes.information}>
       <div className={classes.container}>
         <div className={classes.column}>
           <FontAwesomeIcon icon="shield-alt" className={classes.icon} />
@@ -30,9 +30,9 @@ const InformationBanner = (props) => {
 
 export default InformationBanner;
 
-{
-  /* <FontAwesomeIcon icon="star" className={classes.star} />  */
-}
-{
-  /* <FontAwesomeIcon icon={['far', 'star']} className={classes.star} /> */
-}
+// {
+/* <FontAwesomeIcon icon="star" className={classes.star} />  */
+// }
+// {
+/* <FontAwesomeIcon icon={['far', 'star']} className={classes.star} /> */
+// }

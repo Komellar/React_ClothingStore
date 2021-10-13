@@ -1,4 +1,4 @@
-.banner {
+.collection {
   width: 100%;
   margin: 0;
   margin: 0 auto;
@@ -7,7 +7,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.image {
+.collection .image {
   background-image: url(../../assets/collection.jpg);
   height: 30rem;
   object-fit: contain;
@@ -15,7 +15,7 @@
   background-position: 70% 0%;
 }
 
-.shadow {
+.collection .image .shadow {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-.shadow h5 {
+.collection .image .shadow h5 {
   font-size: 3.5rem;
   text-align: center;
   color: white;
@@ -33,7 +33,7 @@
   padding: 0;
 }
 
-.shadow button {
+.collection .image .shadow button {
   margin: 0 auto;
   margin-top: 4rem;
   padding: 0.8rem 1.8rem;
@@ -45,8 +45,8 @@
   border-radius: 5px;
 }
 
-.shadow button:active,
-.shadow button:hover {
+.collection .image .shadow button:active,
+.collection .image .shadow button:hover {
   cursor: pointer;
   background-color: rgb(0, 0, 0);
 }

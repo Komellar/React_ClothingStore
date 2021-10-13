@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = (props) => {
+  const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalCartPrice);
 
@@ -23,12 +26,18 @@ const Cart = (props) => {
     </ul>
   );
 
+  const orderHandler = () => {
+    dispatch(cartActions.resetCart());
+  };
+
   const modalActions = (
     <div className={classes['modal-actions']}>
       <button className={classes['button--close']} onClick={props.onClose}>
         Close
       </button>
-      <button className={classes.button}>Order</button>
+      <button className={classes.button} onClick={orderHandler}>
+        Order
+      </button>
     </div>
   );
 

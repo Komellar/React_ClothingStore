@@ -1,13 +1,13 @@
-import {
-  useState,
-  // useCallback
-} from 'react';
+import { useState } from 'react';
 
 const validSymbols = /^(?!\s)[A-Za-z_][A-Za-z0-9_():'"#^.?,!\s]+$/;
-const isMinLength = (value) => value.trim().length > 2;
 const hasValidSymbols = (value) => validSymbols.test(value);
+const isMinLength = (value) => value.trim().length > 2;
 
-const useInput = () => {
+const useInput = (
+  enteredValidation = hasValidSymbols,
+  enteredValidationError = 'Use only valid symbols!'
+) => {
   const [inputValue, setInputValue] = useState('');
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState(true);
@@ -19,13 +19,15 @@ const useInput = () => {
 
   const checkValidity = () => {
     const validity =
-      !isMinLength(inputValue) || !hasValidSymbols(inputValue) ? false : true;
+      isMinLength(inputValue) && enteredValidation(inputValue) ? true : false;
 
     const validationError = () => {
-      if (!isMinLength(inputValue)) {
-        return 'Value is too short!';
-      } else if (!hasValidSymbols(inputValue)) {
-        return 'Use only valid symbols!';
+      if (!validity) {
+        if (!isMinLength(inputValue)) {
+          return 'Value is too short!';
+        } else if (!enteredValidation(inputValue)) {
+          return enteredValidationError;
+        }
       } else {
         return null;
       }

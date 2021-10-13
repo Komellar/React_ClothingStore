@@ -1,9 +1,8 @@
 import classes from './NewCollectionBanner.module.css';
-import collectionImg from '../../assets/collection.jpg';
 
 const NewCollectionBanner = () => {
   return (
-    <section className={classes.banner}>
+    <section className={classes.collection}>
       <div className={classes.image}>
         <div className={classes.shadow}>
           <h5>New Collection</h5>

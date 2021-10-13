@@ -23,7 +23,6 @@ const ProductDetail = () => {
       }
 
       const data = await response.json();
-      //data returns => id, title, price, description, image, rating(rate, count)
 
       setClothDetails(data);
     } catch (error) {

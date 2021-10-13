@@ -95,6 +95,3 @@ const ClothDetails = (props) => {
 };
 
 export default ClothDetails;
-
-/* <FontAwesomeIcon icon="star" className={classes.star} /> 
-<FontAwesomeIcon icon={['far', 'star']} className={classes.star} /> */

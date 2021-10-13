@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import NotFound from './pages/NotFound';
 import Header from './components/Layout/Header';
 import ProductDetail from './pages/ProductDetail';
+import AuthPage from './pages/AuthPage';
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -34,6 +35,9 @@ const App = () => {
           </Route>
           <Route path="/products/:productId">
             <ProductDetail />
+          </Route>
+          <Route path="/auth" exact>
+            <AuthPage />
           </Route>
           <Route path="*">
             <NotFound />

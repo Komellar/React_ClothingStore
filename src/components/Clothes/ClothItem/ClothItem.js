@@ -1,24 +1,24 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { cartActions } from '../../../store/cart-slice';
-import ClothItemForm from './ClothItemForm';
+// import { cartActions } from '../../../store/cart-slice';
+// import ClothItemForm from './ClothItemForm';
 import classes from './ClothItem.module.css';
 
 const ClothItem = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const addItemToCartHandler = (quantity) => {
-    dispatch(
-      cartActions.addItemToCart({
-        id: props.id,
-        name: props.name,
-        price: props.price,
-        quantity: quantity,
-      })
-    );
-  };
+  // const addItemToCartHandler = (quantity) => {
+  //   dispatch(
+  //     cartActions.addItemToCart({
+  //       id: props.id,
+  //       name: props.name,
+  //       price: props.price,
+  //       quantity: quantity,
+  //     })
+  //   );
+  // };
 
   return (
     // <li className={classes.item}>
