@@ -1,41 +1,48 @@
 import { useEffect, useState, useCallback } from 'react';
 import useHttp from '../../hooks/use-http';
+import { useSelector } from 'react-redux';
 
-import NewCommentForm from './NewCommentForm';
 import classes from './Comments.module.css';
+import NewCommentForm from './NewCommentForm';
 import CommentsList from './CommentsList';
 import { getAllComments } from '../../lib/api';
 
 const Comments = (props) => {
   const [isAddingComment, setIsAddingComment] = useState(false);
 
+  const isLogged = useSelector((state) => state.auth.isLoggedIn);
+
   const { productId } = props;
   const showCommentFormHandler = () => {
     setIsAddingComment(true);
   };
 
-  const { sendRequest, data, isLoading, error } = useHttp(getAllComments);
+  const {
+    sendRequest: getCommentsRequest,
+    data,
+    isLoading,
+    error,
+  } = useHttp(getAllComments);
 
   useEffect(() => {
     let mounted = true;
 
     setTimeout(() => {
-      sendRequest(productId, mounted);
+      getCommentsRequest(productId, mounted);
     }, 1);
 
     return () => (mounted = false);
-  }, [sendRequest, productId]);
+  }, [getCommentsRequest, productId]);
 
   const commentAddHandler = useCallback(() => {
-    sendRequest(productId);
-  }, [sendRequest, productId]);
+    getCommentsRequest(productId);
+  }, [getCommentsRequest, productId]);
 
   return (
-    <section
-    // className={classes.comments}
-    >
+    <section>
       <h2 className={classes.center}>Comments</h2>
-      {!isAddingComment && (
+      {!isLogged && <p className={classes.centered}>Sign in to add comment.</p>}
+      {!isAddingComment && isLogged && (
         <button onClick={showCommentFormHandler} className={classes['btn-add']}>
           Add Comment
         </button>

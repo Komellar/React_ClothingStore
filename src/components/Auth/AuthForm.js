@@ -1,13 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import useAuth from '../../hooks/use-auth';
-import useHttp from '../../hooks/use-http';
 import useInput from '../../hooks/use-input';
-import {
-  getUserData,
-  loginrUser,
-  registerUser,
-  updateUser,
-} from '../../lib/api';
+import { loginrUser, registerUser, updateUser } from '../../lib/api';
 
 import classes from './AuthForm.module.css';
 
@@ -64,19 +58,24 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (
-      // nameIsTouched &&
-      nameIsValid &&
       emailIsTouched &&
       emailIsValid &&
       passwordIsTouched &&
       passwordIsValid
     ) {
-      setFormIsValid(true);
+      if (isLogging) {
+        setFormIsValid(true);
+      } else if (!isLogging && nameIsTouched && nameIsValid) {
+        setFormIsValid(true);
+      } else {
+        setFormIsValid(false);
+      }
     } else {
       setFormIsValid(false);
     }
   }, [
-    // nameIsTouched,
+    isLogging,
+    nameIsTouched,
     nameIsValid,
     emailIsTouched,
     emailIsValid,
@@ -105,6 +104,8 @@ const AuthForm = () => {
     }
   };
 
+  const buttonClasses = !formIsValid ? classes.disabled : '';
+
   return (
     <section className={classes.auth}>
       <h2>{isLogging ? 'Login' : 'Sign up'}</h2>
@@ -116,6 +117,7 @@ const AuthForm = () => {
               type="text"
               name="username"
               ref={nameInputRef}
+              value={enteredName}
               onChange={() => nameChangeHandler(nameInputRef.current.value)}
               onBlur={nameCheckHandler}
             />
@@ -146,13 +148,11 @@ const AuthForm = () => {
           />
           {!passwordIsValid && <p className={classes.error}>{passwordError}</p>}
         </div>
-        {/* <div className={classes.control}>
-          <label htmlFor="email">Gender</label>
-          <input type="text" name="gender" />
-        </div> */}
         <div className={classes.actions}>
           {!loginIsLoading && !registerIsLoading && (
-            <button type="submit">{isLogging ? 'Login' : 'Sign up'}</button>
+            <button type="submit" className={buttonClasses}>
+              {isLogging ? 'Login' : 'Sign up'}
+            </button>
           )}
           {(loginIsLoading || registerIsLoading) && <p>Loading...</p>}
           {loginError && <p className={classes.error}>{loginError}</p>}

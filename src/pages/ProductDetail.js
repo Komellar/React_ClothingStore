@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
+
 import ClothDetails from '../components/Clothes/ClothItem/ClothDetails';
 
 const ProductDetail = () => {

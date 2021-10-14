@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-// import useHttp from '../hooks/use-http';
-// import { getUserData } from '../lib/api';
 
 import AvalibleClothes from '../components/Clothes/AvalibleClothes';
 import ClothesSummary from '../components/Clothes/ClothesSummary';
@@ -59,8 +57,6 @@ const Products = () => {
   if (isLoading) {
     content = <p className="db-message">Loading...</p>;
   }
-  // const token = localStorage.getItem('token');
-  // const { sendRequest: getData, data: userData } = useHttp(getUserData);
 
   return (
     <React.Fragment>
@@ -68,8 +64,6 @@ const Products = () => {
         <img src={tiesImage} alt="Ties" />
       </div>
       <ClothesSummary />
-      {/* <button onClick={() => getData({ idToken: token })}>Get data</button> */}
-      {/* <button onClick={() => console.log(userData)}>Print data</button> */}
       <InformationBanner />
       <NewCollectionBanner />
       {content}

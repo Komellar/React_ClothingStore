@@ -1,32 +1,34 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import useInput from '../../hooks/use-input';
 import useHttp from '../../hooks/use-http';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Rating from 'react-rating';
 import classes from './NewCommentForm.module.css';
-import { addComment } from '../../lib/api';
+import { getUserData, addComment } from '../../lib/api';
 
 const NewCommentForm = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
-  const nameInputRef = useRef();
+  // const nameInputRef = useRef();
   const commentInputRef = useRef();
 
   const params = useParams();
   const { productId } = params;
 
-  const { sendRequest, error, isLoading } = useHttp(addComment);
+  const token = localStorage.getItem('token');
+  const { sendRequest: getUserRequest, data: userData } = useHttp(getUserData);
+
+  useEffect(() => {
+    getUserRequest({ idToken: token });
+  }, [getUserRequest, token]);
 
   const {
-    inputValue: nameValue,
-    isTouched: nameIsTouched,
-    isValid: nameIsValid,
-    error: nameError,
-    changeValue: changeName,
-    checkValidity: checkName,
-  } = useInput();
+    sendRequest: addCommentRequest,
+    error,
+    isLoading,
+  } = useHttp(addComment);
 
   const {
     inputValue: commentValue,
@@ -44,9 +46,9 @@ const NewCommentForm = (props) => {
       return;
     }
 
-    await sendRequest({
+    await addCommentRequest({
       commentData: {
-        username: nameValue,
+        username: userData.data.users[0].displayName,
         comment: commentValue,
         rating: ratingStars,
       },
@@ -57,28 +59,12 @@ const NewCommentForm = (props) => {
   };
 
   useEffect(() => {
-    if (
-      !nameIsValid ||
-      !nameIsTouched ||
-      !commentIsValid ||
-      !commentIsTouched ||
-      ratingStars === 0
-    ) {
+    if (!commentIsValid || !commentIsTouched || ratingStars === 0) {
       setFormIsValid(false);
     } else {
       setFormIsValid(true);
     }
-  }, [
-    nameIsValid,
-    nameIsTouched,
-    commentIsValid,
-    commentIsTouched,
-    ratingStars,
-  ]);
-
-  const nameClasses = nameError
-    ? `${classes['form-control']} ${classes.invalid}`
-    : classes['form-control'];
+  }, [commentIsValid, commentIsTouched, ratingStars]);
 
   const commentClasses = commentError
     ? `${classes['form-control']} ${classes.invalid}`
@@ -105,17 +91,6 @@ const NewCommentForm = (props) => {
           />
         </div>
         <div className={classes.inputs}>
-          <div className={nameClasses}>
-            <label htmlFor="name">Username</label>
-            <input
-              ref={nameInputRef}
-              type="text"
-              name="name"
-              onChange={() => changeName(nameInputRef.current.value)}
-              onBlur={checkName}
-            />
-            {!nameIsValid && <p className={classes.error}>{nameError}</p>}
-          </div>
           <div className={commentClasses}>
             <label htmlFor="comment">Your Comment</label>
             <textarea

@@ -17,9 +17,6 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       localStorage.removeItem('token');
     },
-    updateProfile(state, action) {
-      // state.userName = action.payload;s
-    },
   },
 });
 
