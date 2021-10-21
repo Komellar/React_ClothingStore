@@ -62,7 +62,7 @@ const ClothDetails = (props) => {
         <p className={classes.desc}>{details.description}</p>
         <p className={classes.price}>{`$${details.price}`}</p>
         <ClothItemForm onAdd={addItemToCartHandler} id={productId} />
-        <p>Average Product Rating</p>
+        <p className={classes['average-rating']}>Average Product Rating</p>
         <div className={classes.stars}>
           <Rating
             className={classes.star}

@@ -1,0 +1,88 @@
+.profile-content {
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile-content h2 {
+  font-size: 2.5rem;
+}
+
+.profile-avatar {
+  height: 10rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: orange;
+}
+
+.reset-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgb(199, 119, 15);
+  background-color: rgb(199, 119, 15);
+  border-radius: 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.reset-btn:hover {
+  cursor: pointer;
+  border: 1px solid rgb(173, 104, 13);
+  background-color: rgb(173, 104, 13);
+}
+
+.password-form {
+  margin-top: 3rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.password {
+  font-size: 1.2rem;
+  color: rgb(117, 62, 11);
+  border: 1px solid rgb(88, 46, 7);
+  padding: 3px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.submit-password {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgb(199, 119, 15);
+  background-color: rgb(199, 119, 15);
+  border-radius: 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.submit-password:hover {
+  cursor: pointer;
+  border-color: rgb(233, 137, 13);
+  background-color: rgb(233, 137, 13);
+}
+
+.correct {
+  color: green;
+}
+
+.error {
+  color: #f02020;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.1rem;
+}

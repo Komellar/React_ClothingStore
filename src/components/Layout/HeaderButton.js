@@ -1,12 +1,13 @@
 import React from 'react';
 
-import './HeaderButton.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classes from './HeaderButton.module.css';
 
 const HeaderButton = (props) => {
   return (
-    <div className="header-cart" onClick={props.onOpen}>
-      <h2>Your Cart</h2>
-      <p>{props.itemsQuantity}</p>
+    <div className={classes['cart-btn']} onClick={props.onOpen}>
+      <FontAwesomeIcon icon="shopping-cart" className={classes.icon} />
+      <p className={classes.quantity}>{props.itemsQuantity}</p>
     </div>
   );
 };

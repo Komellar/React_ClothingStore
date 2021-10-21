@@ -11,7 +11,6 @@ import { getUserData, addComment } from '../../lib/api';
 const NewCommentForm = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [ratingStars, setRatingStars] = useState(0);
-  // const nameInputRef = useRef();
   const commentInputRef = useRef();
 
   const params = useParams();
@@ -49,6 +48,7 @@ const NewCommentForm = (props) => {
     await addCommentRequest({
       commentData: {
         username: userData.data.users[0].displayName,
+        photoUrl: userData.data.users[0].photoUrl,
         comment: commentValue,
         rating: ratingStars,
       },

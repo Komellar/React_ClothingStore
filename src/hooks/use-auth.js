@@ -20,20 +20,21 @@ const useAuth = (requestFunction, updateUserFunction) => {
             email: requestData.email,
             password: requestData.password,
           });
-          console.log(response);
+          // console.log(response);
           if (updateUserFunction) {
             const userResponse = await updateUserFunction({
               idToken: response.data.idToken,
               name: requestData.name,
+              photoUrl: requestData.photoUrl,
             });
             console.log(userResponse);
           }
-          setIsLoading(false);
           dispatch(authActions.login(response.data.idToken));
           history.replace('/products');
         } catch (err) {
           setError(err.message || 'Something went wrong!');
         }
+        setIsLoading(false);
       }
     },
 

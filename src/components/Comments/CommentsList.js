@@ -12,23 +12,26 @@ const CommentsList = (props) => {
       <ul className={classes.list}>
         {props.comments.map((comment) => (
           <li key={comment.id} className={classes['list-item']}>
-            <h5 className={classes.comment}>{comment.comment}</h5>
-            <div className={classes['comment-span']}>
-              <p>{comment.username}</p>
-              <div>
-                <Rating
-                  className={classes.star}
-                  readonly={true}
-                  initialRating={comment.rating}
-                  emptySymbol={<FontAwesomeIcon icon="star" />}
-                  fullSymbol={
-                    <FontAwesomeIcon
-                      icon="star"
-                      className={classes['star-active']}
-                    />
-                  }
-                />
-              </div>
+            <img
+              src={comment.photoUrl}
+              className={classes.avatar}
+              alt="User's avatar"
+            />
+            <div>
+              <Rating
+                className={classes.star}
+                readonly={true}
+                initialRating={comment.rating}
+                emptySymbol={<FontAwesomeIcon icon="star" />}
+                fullSymbol={
+                  <FontAwesomeIcon
+                    icon="star"
+                    className={classes['star-active']}
+                  />
+                }
+              />
+              <h5 className={classes.comment}>{comment.comment}</h5>
+              <p className={classes.username}>{comment.username}</p>
             </div>
           </li>
         ))}
@@ -37,7 +40,6 @@ const CommentsList = (props) => {
   }
 
   if (props.error) {
-    // content = <button onClick={props.onFetch}>Try again</button>;
     content = 'Error...';
   }
   if (props.loading) {

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import useAuth from '../../hooks/use-auth';
 import useInput from '../../hooks/use-input';
-import { loginrUser, registerUser, updateUser } from '../../lib/api';
 
+import { loginUser, registerUser, updateUser } from '../../lib/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
@@ -12,6 +13,9 @@ const AuthForm = () => {
 
   const [isLogging, setIsLogging] = useState(true);
   const [formIsValid, setFormIsValid] = useState(false);
+  const [avatarImage, setAvatarImage] = useState(
+    `https://avatars.dicebear.com/api/personas/happy.svg`
+  );
 
   const {
     sendRequest: registerRequest,
@@ -23,7 +27,7 @@ const AuthForm = () => {
     sendRequest: loginRequest,
     error: loginError,
     isLoading: loginIsLoading,
-  } = useAuth(loginrUser);
+  } = useAuth(loginUser);
 
   const switchAuthModeHandler = () => {
     setIsLogging(!isLogging);
@@ -57,22 +61,28 @@ const AuthForm = () => {
   } = useInput();
 
   useEffect(() => {
-    if (
-      emailIsTouched &&
-      emailIsValid &&
-      passwordIsTouched &&
-      passwordIsValid
-    ) {
-      if (isLogging) {
-        setFormIsValid(true);
-      } else if (!isLogging && nameIsTouched && nameIsValid) {
-        setFormIsValid(true);
+    let mounted = true;
+
+    if (mounted) {
+      if (
+        emailIsTouched &&
+        emailIsValid &&
+        passwordIsTouched &&
+        passwordIsValid
+      ) {
+        if (isLogging) {
+          setFormIsValid(true);
+        } else if (!isLogging && nameIsTouched && nameIsValid) {
+          setFormIsValid(true);
+        } else {
+          setFormIsValid(false);
+        }
       } else {
         setFormIsValid(false);
       }
-    } else {
-      setFormIsValid(false);
     }
+
+    return () => (mounted = false);
   }, [
     isLogging,
     nameIsTouched,
@@ -87,8 +97,6 @@ const AuthForm = () => {
     event.preventDefault();
 
     if (formIsValid) {
-      console.log(enteredName);
-
       if (isLogging) {
         await loginRequest({
           email: enteredEmail,
@@ -99,6 +107,7 @@ const AuthForm = () => {
           name: enteredName,
           email: enteredEmail,
           password: enteredPassword,
+          photoUrl: avatarImage,
         });
       }
     }
@@ -106,10 +115,32 @@ const AuthForm = () => {
 
   const buttonClasses = !formIsValid ? classes.disabled : '';
 
+  const changeAvatarHandler = () => {
+    setAvatarImage(
+      `https://avatars.dicebear.com/api/personas/${Math.random()
+        .toString(36)
+        .substr(2, 5)}.svg`
+    );
+  };
+
   return (
     <section className={classes.auth}>
       <h2>{isLogging ? 'Login' : 'Sign up'}</h2>
       <form onSubmit={submitFormHandler}>
+        {!isLogging && (
+          <div className={classes.avatar}>
+            <img
+              src={avatarImage}
+              alt="Avatar"
+              className={classes['avatar-img']}
+            />
+            <FontAwesomeIcon
+              icon="redo-alt"
+              className={classes.icon}
+              onClick={changeAvatarHandler}
+            />
+          </div>
+        )}
         {!isLogging && (
           <div className={classes.control}>
             <label htmlFor="username">Username</label>

@@ -19,7 +19,7 @@
 }
 
 .total p {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .modal-actions {
@@ -45,10 +45,28 @@
   color: rgb(156, 80, 9);
 }
 
-.modal-actions button:active,
 .modal-actions button:hover,
-.modal-actions .button--close:active,
 .modal-actions .button--close:hover {
   background-color: rgb(107, 55, 6);
   color: white;
+}
+
+@media (max-width: 760px) {
+  .total h3 {
+    font-size: 1.2rem;
+  }
+
+  .total p {
+    font-size: 1.2rem;
+  }
+
+  .modal-actions {
+    margin-bottom: 2rem;
+  }
+
+  .modal-actions button {
+    padding: 0.4rem 1.2rem;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+  }
 }

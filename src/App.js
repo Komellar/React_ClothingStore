@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Header from './components/Layout/Header';
 import ProductDetail from './pages/ProductDetail';
 import AuthPage from './pages/AuthPage';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -38,6 +39,9 @@ const App = () => {
           </Route>
           <Route path="/auth" exact>
             <AuthPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
           <Route path="*">
             <NotFound />

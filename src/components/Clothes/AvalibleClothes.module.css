@@ -1,14 +1,15 @@
 .clothes-list {
-  margin: 0;
-  margin-top: 3rem;
-  padding: 0;
-  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-@media (min-width: 650px) {
+@media (max-width: 650px) {
   .clothes-list {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    margin: 0;
+    margin-top: 3rem;
+    padding: 0;
+    width: 100%;
   }
 }

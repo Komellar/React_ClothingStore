@@ -41,6 +41,13 @@
   color: rgb(156, 80, 9);
 }
 
+.average-rating {
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
 .stars {
   display: block;
 }
