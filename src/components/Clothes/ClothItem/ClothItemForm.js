@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-// import { Link } from 'react-router-dom';
 
 import './ClothItemForm.css';
 
@@ -34,9 +33,6 @@ const ClothItemForm = (props) => {
         <button className="add-button" type="submit">
           + Add
         </button>
-        {/* <Link to={`/products/${props.id}`} className="item-details">
-          Show Details
-        </Link> */}
       </div>
     </form>
   );

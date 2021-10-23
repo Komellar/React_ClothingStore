@@ -29,10 +29,3 @@ const InformationBanner = (props) => {
 };
 
 export default InformationBanner;
-
-// {
-/* <FontAwesomeIcon icon="star" className={classes.star} />  */
-// }
-// {
-/* <FontAwesomeIcon icon={['far', 'star']} className={classes.star} /> */
-// }

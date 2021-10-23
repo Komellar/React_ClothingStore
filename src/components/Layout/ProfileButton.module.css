@@ -4,6 +4,12 @@
   font-size: 1.3rem;
   margin-right: 0.2rem;
   padding: 0.3rem 1rem;
+  transition: color 0.3s;
+}
+
+.profile-btn:hover {
+  cursor: pointer;
+  color: rgb(233, 184, 164);
 }
 
 @media (max-width: 560px) {

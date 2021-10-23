@@ -2,10 +2,12 @@
   display: flex;
   align-items: center;
   margin-left: 2rem;
+  transition: color 0.3s;
 }
 
 .cart-btn:hover {
   cursor: pointer;
+  color: rgb(233, 184, 164);
 }
 
 .icon {

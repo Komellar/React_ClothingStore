@@ -25,11 +25,12 @@
   color: white;
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .logo:hover {
   cursor: pointer;
-  color: rgb(240, 231, 223);
+  color: rgb(233, 184, 164);
 }
 
 .header-buttons {

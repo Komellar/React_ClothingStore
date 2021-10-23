@@ -46,13 +46,13 @@
   padding: 0.2rem 1.2rem;
   margin: 0.2rem 0;
   font-size: 1.5rem;
+  background-color: #fff;
   color: rgb(156, 80, 9);
   border: 1px solid rgb(156, 80, 9);
   border-radius: 10px;
-  background-color: #fff;
+  transition: color 0.3s, background-color 0.3s;
 }
 
-.cart-item .actions button:active,
 .cart-item .actions button:hover {
   background-color: rgb(156, 80, 9);
   color: #fff;

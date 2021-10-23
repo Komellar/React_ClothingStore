@@ -29,9 +29,9 @@
   color: black;
   border: 3px solid #414141;
   border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.newsletter button:active,
 .newsletter button:hover {
   cursor: pointer;
   background-color: rgb(255, 255, 255);

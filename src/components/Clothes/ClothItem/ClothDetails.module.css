@@ -81,17 +81,16 @@
   color: white;
   font-size: 1rem;
   font-weight: 700;
-  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-.btn-comments:active,
 .btn-comments:hover {
+  cursor: pointer;
   background-color: rgb(231, 104, 0);
   border-color: rgb(231, 104, 0);
 }
 
 .comments {
-  /* background-color: rgb(175, 97, 97); */
   width: 100%;
   margin-top: 2rem;
 }
