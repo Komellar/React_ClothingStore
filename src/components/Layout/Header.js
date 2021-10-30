@@ -14,7 +14,7 @@ const Header = (props) => {
     <React.Fragment>
       <header className={classes.header}>
         <div className={classes.span}>
-          <Link to="/products" className={classes.logo}>
+          <Link to="/React_ClothingStore/home" className={classes.logo}>
             Clothing store
           </Link>
           <HeaderButton onOpen={props.onOpen} itemsQuantity={cartQuantity} />

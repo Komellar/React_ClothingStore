@@ -9,7 +9,10 @@ const ProfileButton = () => {
   return (
     <div>
       {isLogged && (
-        <Link to={'/profile'} className={classes['profile-btn']}>
+        <Link
+          to={'/React_ClothingStore/profile'}
+          className={classes['profile-btn']}
+        >
           Profile
         </Link>
       )}

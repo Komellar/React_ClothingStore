@@ -5,7 +5,10 @@ import classes from './ClothItem.module.css';
 
 const ClothItem = (props) => {
   return (
-    <Link to={`/products/${props.id}`} className={classes.item}>
+    <Link
+      to={`/React_ClothingStore/products/${props.id}`}
+      className={classes.item}
+    >
       <div className={classes['image-section']}>
         <img src={props.image} alt="Item" className={classes.image} />
       </div>

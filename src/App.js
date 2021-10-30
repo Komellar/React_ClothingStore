@@ -28,19 +28,19 @@ const App = () => {
       <Header onOpen={openCartHandler} />
       <main>
         <Switch>
-          <Route path="/" exact>
-            <Redirect to="/products" />
+          <Route path="/React_ClothingStore/" exact>
+            <Redirect to="/React_ClothingStore/home" />
           </Route>
-          <Route path="/products" exact>
+          <Route path="/React_ClothingStore/home" exact>
             <Products />
           </Route>
-          <Route path="/products/:productId">
+          <Route path="/React_ClothingStore/products/:productId">
             <ProductDetail />
           </Route>
-          <Route path="/auth" exact>
+          <Route path="/React_ClothingStore/auth" exact>
             <AuthPage />
           </Route>
-          <Route path="/profile">
+          <Route path="/React_ClothingStore/profile">
             <ProfilePage />
           </Route>
           <Route path="*">

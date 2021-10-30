@@ -1,51 +1,33 @@
-import { useCallback, useState, useEffect, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
+import useHttp from '../hooks/use-http';
+import { getProductDetails } from '../lib/api';
 import ClothDetails from '../components/Clothes/ClothItem/ClothDetails';
 
 const ProductDetail = () => {
-  const [clothDetails, setClothDetails] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const params = useParams();
   const { productId } = params;
 
-  const fetchClothDetailsHandler = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        `https://fakestoreapi.com/products/${productId}`
-      );
-
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
-
-      const data = await response.json();
-
-      setClothDetails(data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }, [productId]);
+  const {
+    sendRequest: getProductRequest,
+    data,
+    isLoading,
+    error,
+  } = useHttp(getProductDetails);
 
   useEffect(() => {
-    fetchClothDetailsHandler();
-  }, [fetchClothDetailsHandler]);
+    let mounted = true;
+    setTimeout(() => {
+      getProductRequest(productId, mounted);
+    }, 1);
+
+    return () => (mounted = false);
+  }, [getProductRequest, productId]);
 
   let content = <p className="db-message empty">Found no cloth.</p>;
-  if (clothDetails) {
-    const details = {
-      id: clothDetails.id,
-      name: clothDetails.title,
-      description: clothDetails.description,
-      price: clothDetails.price,
-      image: clothDetails.image,
-    };
-    content = <ClothDetails details={details} />;
+  if (data) {
+    content = <ClothDetails details={data} />;
   }
   if (error) {
     content = (

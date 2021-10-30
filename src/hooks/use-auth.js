@@ -30,7 +30,7 @@ const useAuth = (requestFunction, updateUserFunction) => {
             console.log(userResponse);
           }
           dispatch(authActions.login(response.data.idToken));
-          history.replace('/products');
+          history.replace('/React_ClothingStore/home');
         } catch (err) {
           setError(err.message || 'Something went wrong!');
         }

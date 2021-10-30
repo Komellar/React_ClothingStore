@@ -1,51 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
+import useHttp from '../hooks/use-http';
+import { getAllProducts } from '../lib/api';
 
-import AvalibleClothes from '../components/Clothes/AvalibleClothes';
-import ClothesSummary from '../components/Clothes/ClothesSummary';
 import './Products.css';
 import tiesImage from '../assets/ties.jpg';
+import AvalibleClothes from '../components/Clothes/AvalibleClothes';
+import ClothesSummary from '../components/Clothes/ClothesSummary';
 import InformationBanner from '../components/Banners/InformationBanner';
 import NewCollectionBanner from '../components/Banners/NewCollectionBanner';
 import NewsletterBanner from '../components/Banners/NewsletterBanner';
 
 const Products = () => {
-  const [clothes, setClothes] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchClothesHandler = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/category/men's%20clothing"
-      );
-
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
-
-      const data = await response.json();
-      const loadedClothes = data.map((clothData) => {
-        return {
-          id: clothData.id,
-          title: clothData.title,
-          description: clothData.description,
-          price: clothData.price,
-          image: clothData.image,
-        };
-      });
-
-      setClothes(loadedClothes);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }, []);
+  const {
+    sendRequest: getProductsRequest,
+    data: clothes,
+    isLoading,
+    error,
+  } = useHttp(getAllProducts);
 
   useEffect(() => {
-    fetchClothesHandler();
-  }, [fetchClothesHandler]);
+    let mounted = true;
+    setTimeout(() => {
+      getProductsRequest(null, mounted);
+    }, 1);
+
+    return () => (mounted = false);
+  }, [getProductsRequest]);
 
   let content = <p className="db-message empty">Found no clothes.</p>;
   if (clothes.length > 0) {

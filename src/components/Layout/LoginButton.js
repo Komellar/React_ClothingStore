@@ -14,7 +14,7 @@ const LoginButton = () => {
   };
 
   let content = (
-    <Link to={`/auth`} className={classes['auth-btn']}>
+    <Link to={`/React_ClothingStore/auth`} className={classes['auth-btn']}>
       Login
     </Link>
   );
@@ -22,7 +22,7 @@ const LoginButton = () => {
   if (isLogged) {
     content = (
       <Link
-        to={`/products`}
+        to={`/React_ClothingStore/home`}
         className={classes['auth-btn']}
         onClick={logoutHandler}
       >

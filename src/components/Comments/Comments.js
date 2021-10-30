@@ -26,10 +26,7 @@ const Comments = (props) => {
 
   useEffect(() => {
     let mounted = true;
-
-    setTimeout(() => {
-      getCommentsRequest(productId, mounted);
-    }, 1);
+    getCommentsRequest(productId, mounted);
 
     return () => (mounted = false);
   }, [getCommentsRequest, productId]);
