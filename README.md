@@ -2,7 +2,7 @@
 
 ### My first React project to practice what I've learned.
 
-To log in you can use one of the existing accounts (login: test@test.com, password: test123)
+### See it live! https://komellar.github.io/React_ClothingStore/
 
 #### Functionality:
 
@@ -17,3 +17,5 @@ To log in you can use one of the existing accounts (login: test@test.com, passwo
 - fake shop items API: https://fakestoreapi.com/
 - avatar creator API: https://avatars.dicebear.com/
 - react stars rating: https://github.com/dreyescat/react-rating
+
+#### To log in you can use one of the existing accounts (login: test@test.com, password: test123)
